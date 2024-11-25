@@ -95,14 +95,14 @@ public class FormLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Gagal Login, username atau password salah");
             return;
         }
-        
         HalamanAdmin halamanAdmin = new HalamanAdmin();
+        HalamanPelanggan halamanPelanggan = new HalamanPelanggan(user);
         JOptionPane.showMessageDialog(this, "Berhasil Login");
         if (user.getRole().equals("admin")) {
             halamanAdmin.setVisible(true);
         }
         else {
-            JOptionPane.showMessageDialog(this, "ini halaman user");
+            halamanPelanggan.setVisible(true);
         }
         this.setVisible(false);
     }//GEN-LAST:event_loginButtonActionPerformed
