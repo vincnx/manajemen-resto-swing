@@ -36,6 +36,7 @@ public class UserController {
             }
 
             User user = new User();
+            user.setId(res.getInt("id"));
             user.setUsername(username);
             user.setPassword(password);
             user.setRole(res.getString("role"));

@@ -46,6 +46,7 @@ public class MenuController {
 
             while (res.next()) {
                 Menu menu = new Menu();
+                menu.setId(res.getInt("id"));
                 menu.setNama(res.getString("nama"));
                 menu.setHarga(res.getDouble("harga"));
                 menuList.add(menu);
@@ -62,13 +63,13 @@ public class MenuController {
         try {
             sql = "select * from menu where nama='" + nama + "'";
             res = stm.executeQuery(sql);
-
-            // menu tidak ditemukan
+            
             if (!res.next()) {
                 return null;
             }
 
             Menu menu = new Menu();
+            menu.setId(res.getInt("id"));
             menu.setNama(res.getString("nama"));
             menu.setHarga(res.getDouble("harga"));
             return menu;
