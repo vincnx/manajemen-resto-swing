@@ -36,7 +36,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         formMenu1 = new manajemenresto.view.FormMenu();
         formPelanggan1 = new manajemenresto.view.FormPelanggan();
-        formHistori1 = new manajemenresto.view.FormHistori();
+        formHistori2 = new manajemenresto.view.FormHistori();
 
         jScrollPane2.setViewportView(jEditorPane1);
 
@@ -46,7 +46,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Menu", formMenu1);
         jTabbedPane1.addTab("Pelanggan", formPelanggan1);
-        jTabbedPane1.addTab("History Pesanan", formHistori1);
+        jTabbedPane1.addTab("Riwayat pembelian", formHistori2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +98,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private manajemenresto.view.FormHistori formHistori1;
+    private manajemenresto.view.FormHistori formHistori2;
     private manajemenresto.view.FormMenu formMenu1;
     private manajemenresto.view.FormPelanggan formPelanggan1;
     private javax.swing.JEditorPane jEditorPane1;
