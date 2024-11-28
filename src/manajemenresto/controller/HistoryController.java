@@ -22,22 +22,61 @@ public class HistoryController {
         db.config();
         stm = db.stm;
     }
+    public ArrayList<History> getBulanIniHistory(){
+        try {
+            ArrayList<History> list = new ArrayList<>();
+            sql ="SELECT * FROM pesanan WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE());";
+            res = stm.executeQuery(sql);
+            while (res.next()) {
+                History history = new History();
+                history.setId(res.getInt("id"));
+                history.setDate(res.getDate("tanggal"));
+                history.setTotal_biaya(res.getDouble("total_biaya"));
+                history.setUser_id(res.getInt("user_id"));
+                list.add(history);
+            }
+            return list;
+        } catch (Exception e) {
+            System.out.println("Query Gagal... :"+e);
+            return null;
+        }
+    }
+    public ArrayList<History> getMingguIniHistory(){
+        try {
+            ArrayList<History> list = new ArrayList<>();
+            sql = "SELECT * FROM pesanan WHERE YEARWEEK(tanggal, 1) = YEARWEEK(CURDATE(), 1);";
+            res = stm.executeQuery(sql);
+            while (res.next()) {
+                History history = new History();
+                history.setId(res.getInt("id"));
+                history.setDate(res.getDate("tanggal"));
+                history.setTotal_biaya(res.getDouble("total_biaya"));
+                history.setUser_id(res.getInt("user_id"));
+                list.add(history);
+            }
+            System.out.println("Berhasil dibuat");
+            return list;
+        } catch (Exception e) {
+            System.out.println("Query Gagal...");
+            return null;
+        }
+    }
     public ArrayList<History> getAllHistory() {
         try {
-            sql = "select * from 'pesanan'";
+            sql = "select * from pesanan";
             res = stm.executeQuery(sql);
 
-            ArrayList<History> pesananList = new ArrayList<>();
+            ArrayList<History> historyList = new ArrayList<>();
 
             while (res.next()) {
-                History pesanan = new History();
-                pesanan.setId(res.getInt("id"));
-                pesanan.setDate(res.getDate("tanggal"));
-                pesanan.setTotal_biaya(res.getDouble("total_biaya"));
-                pesanan.setUser_id(res.getInt("user_id"));
-                pesananList.add(pesanan);
+                History history = new History();
+                history.setId(res.getInt("id"));
+                history.setDate(res.getDate("tanggal"));
+                history.setTotal_biaya(res.getDouble("total_biaya"));
+                history.setUser_id(res.getInt("user_id"));
+                historyList.add(history);
             }
-            return pesananList;
+            return historyList;
         } catch (Exception e) {
             System.out.println("Query Gagal...");
             return null;
