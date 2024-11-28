@@ -25,10 +25,8 @@ public void fillTabelHistory() {
         DefaultTableModel df = (DefaultTableModel)tableHistory.getModel();
         df.getDataVector().removeAllElements();
         if (historyList != null) {
-            System.out.println("Masuk perulangan menu\n");
             int no = 1;
             for (History history: historyList) {
-                System.out.println("Perulangan ke sekian");
                 Object[] obj = new Object[5];
                 obj[0] = no;
                 obj[1] = history.getId();

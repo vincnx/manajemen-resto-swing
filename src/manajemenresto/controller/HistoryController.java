@@ -54,10 +54,9 @@ public class HistoryController {
                 history.setUser_id(res.getInt("user_id"));
                 list.add(history);
             }
-            System.out.println("Berhasil dibuat");
             return list;
         } catch (Exception e) {
-            System.out.println("Query Gagal...");
+            System.out.println("Query Gagal..."+e);
             return null;
         }
     }
@@ -78,7 +77,7 @@ public class HistoryController {
             }
             return historyList;
         } catch (Exception e) {
-            System.out.println("Query Gagal...");
+            System.out.println("Query Gagal..."+e);
             return null;
         }
     }
