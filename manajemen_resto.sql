@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 25, 2024 at 04:50 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Nov 28, 2024 at 11:23 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,7 +65,9 @@ CREATE TABLE `menu_pesanan` (
 
 INSERT INTO `menu_pesanan` (`id`, `pesanan_id`, `menu_id`, `jumlah_pesanan`) VALUES
 (7, 14, 1, 5),
-(8, 14, 2, 1);
+(8, 14, 2, 1),
+(9, 15, 2, 12),
+(10, 15, 8, 11);
 
 -- --------------------------------------------------------
 
@@ -85,7 +87,33 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id`, `tanggal`, `total_biaya`, `user_id`) VALUES
-(14, '2024-11-25 15:28:04', 65500, 8);
+(14, '2024-11-25 15:28:04', 65500, 8),
+(15, '2024-11-28 07:26:27', 37221, 8),
+(16, '2023-10-01 03:00:00', 100.5, 8),
+(17, '2023-10-05 05:30:00', 200.75, 8),
+(18, '2023-10-10 07:45:00', 150, 8),
+(19, '2023-10-15 02:15:00', 300.2, 8),
+(20, '2023-10-20 09:00:00', 250, 8),
+(21, '2023-10-22 04:30:00', 400, 8),
+(22, '2023-10-25 01:00:00', 175.9, 8),
+(23, '2023-10-28 12:00:00', 225.45, 8),
+(24, '2023-10-30 06:00:00', 320.1, 8),
+(25, '2023-10-31 08:00:00', 180.6, 8),
+(26, '2024-11-22 17:00:00', 100.5, 8),
+(27, '2024-11-25 17:00:00', 200.75, 8),
+(28, '2024-11-26 17:00:00', 150, 8),
+(29, '2024-11-21 17:00:00', 300.2, 8),
+(30, '2024-11-25 17:00:00', 250, 8),
+(31, '2024-11-24 17:00:00', 400, 8),
+(32, '2024-11-22 17:00:00', 175.9, 8),
+(33, '2024-11-25 17:00:00', 225.45, 8),
+(34, '2024-11-26 17:00:00', 320.1, 8),
+(35, '2024-11-21 17:00:00', 180.6, 8),
+(36, '2024-11-17 17:00:00', 100.5, 8),
+(37, '2024-11-01 17:00:00', 200.75, 8),
+(38, '2024-11-18 17:00:00', 150, 8),
+(39, '2024-11-01 17:00:00', 300.2, 8),
+(40, '2024-11-11 17:00:00', 250, 8);
 
 -- --------------------------------------------------------
 
@@ -107,7 +135,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `no_telp`, `password`, `role`) VALUES
 (1, 'admin', '0812343243', '1234', 'admin'),
-(6, 'baru', '123', 'pass', 'pelanggan'),
+(6, 'baru', '345', 'pass', 'pelanggan'),
 (7, 'rba', '2342', 'fdsa', 'pelanggan'),
 (8, 'coba', '123', 'pass', 'pelanggan');
 
@@ -157,13 +185,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_pesanan`
 --
 ALTER TABLE `menu_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `user`
