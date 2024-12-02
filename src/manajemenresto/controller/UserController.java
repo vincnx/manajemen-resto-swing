@@ -39,6 +39,7 @@
                 user.setId(res.getInt("id"));
                 user.setUsername(username);
                 user.setPassword(password);
+                user.setNoTelp(res.getString("no_telp"));
                 user.setRole(res.getString("role"));
                 return user;
             } catch (Exception e) {
