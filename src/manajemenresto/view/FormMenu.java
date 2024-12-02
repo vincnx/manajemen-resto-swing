@@ -9,6 +9,7 @@ import manajemenresto.controller.MenuController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import manajemenresto.model.Menu;
+import manajemenresto.view.FormLogin;
 
 /**
  *
@@ -89,6 +90,9 @@ public class FormMenu extends javax.swing.JPanel {
         buttonTambah = new javax.swing.JToggleButton();
         buttonEdit = new javax.swing.JToggleButton();
         buttonBatal = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(143, 40, 50));
 
         tabelMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,9 +108,11 @@ public class FormMenu extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelMenu);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nama Menu");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Harga");
 
         buttonHapus.setText("hapus");
@@ -124,6 +130,7 @@ public class FormMenu extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cari Menu");
 
         buttonCari.setText("cari");
@@ -151,6 +158,13 @@ public class FormMenu extends javax.swing.JPanel {
         buttonBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBatalActionPerformed(evt);
+            }
+        });
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -188,11 +202,17 @@ public class FormMenu extends javax.swing.JPanel {
                             .addComponent(comboBoxMenu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(logout)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -319,6 +339,12 @@ public class FormMenu extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_comboBoxMenuActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:                                       
+        this.setVisible(false);
+        new FormLogin().setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBatal;
@@ -331,6 +357,7 @@ public class FormMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JTable tabelMenu;
     private javax.swing.JTextField textHarga;
     private javax.swing.JTextField textNamaMenu;
