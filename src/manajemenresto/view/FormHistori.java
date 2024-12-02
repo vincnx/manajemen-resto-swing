@@ -4,6 +4,8 @@
  */
 package manajemenresto.view;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -15,17 +17,20 @@ import manajemenresto.model.History;
  * @author anr00
  */
 public class FormHistori extends javax.swing.JPanel {
+    NumberFormat _f = new DecimalFormat("#0.00");  
     HistoryController hc = new HistoryController();
     History history = new History();
-    ArrayList<History> historyList = hc.getAllHistory();
+    ArrayList<History> historyList;
     public FormHistori() {
         initComponents();
+        updateHistoryTable();
         fillTabelHistory();
     }
 public void fillTabelHistory() {
         DefaultTableModel df = (DefaultTableModel)tableHistory.getModel();
         df.getDataVector().removeAllElements();
         if (historyList != null) {
+            double total=0;
             int no = 1;
             for (History history: historyList) {
                 Object[] obj = new Object[5];
@@ -35,8 +40,10 @@ public void fillTabelHistory() {
                 obj[3] = history.getTotal_biaya();
                 obj[4] = history.getUser_id();
                 ++no;
+                total+=history.getTotal_biaya();
                 df.addRow(obj);
             }
+            this.lblTotal.setText("Rp."+_f.format(total));
         }
     }
     /**
@@ -53,6 +60,11 @@ public void fillTabelHistory() {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableHistory = new javax.swing.JTable();
         logout = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        sortbox = new javax.swing.JComboBox<>();
+        ascrad = new javax.swing.JRadioButton();
+        descrad = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(143, 40, 50));
 
@@ -70,7 +82,7 @@ public void fillTabelHistory() {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Filter:");
+        jLabel1.setText("Filter & Sorting:");
 
         tableHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,6 +104,40 @@ public void fillTabelHistory() {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Total pendapatan:");
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotal.setText("Rp.0");
+
+        sortbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "default", "tanggal", "total biaya" }));
+        sortbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortboxActionPerformed(evt);
+            }
+        });
+
+        ascrad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ascrad.setForeground(new java.awt.Color(255, 255, 255));
+        ascrad.setSelected(true);
+        ascrad.setText("kecil ke besar");
+        ascrad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ascradActionPerformed(evt);
+            }
+        });
+
+        descrad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        descrad.setForeground(new java.awt.Color(255, 255, 255));
+        descrad.setText("besar ke kecil");
+        descrad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descradActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,12 +147,24 @@ public void fillTabelHistory() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout)))
+                        .addComponent(logout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboFilter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sortbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTotal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(descrad))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ascrad)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,30 +175,53 @@ public void fillTabelHistory() {
                     .addComponent(jLabel1)
                     .addComponent(logout))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblTotal)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descrad)
+                                    .addComponent(sortbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(ascrad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void updateHistoryTable(){
+        String _sortdirection="";
+        if (this.ascrad.isSelected()){
+            _sortdirection=this.ascrad.getText();
+        }
+        else if (this.descrad.isSelected()){
+            _sortdirection=this.descrad.getText();
+        }
+        if (comboFilter.getSelectedItem() == "Semua"){
+            System.out.println("Masuk ke semua");
+            historyList = hc.getAllHistory(this.sortbox.getSelectedItem().toString(),_sortdirection);
+        } else if (comboFilter.getSelectedItem()=="Bulanan"){
+            System.out.println("Masuk ke bulan ini");
+            historyList = hc.getBulanIniHistory(this.sortbox.getSelectedItem().toString(),_sortdirection);
+        } else if (comboFilter.getSelectedItem()=="Mingguan"){
+            System.out.println("Masuk ke minggu ini");
+            historyList = hc.getMingguIniHistory(this.sortbox.getSelectedItem().toString(),_sortdirection);
+        }
+        fillTabelHistory();
+    }
     private void comboFilterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboFilterItemStateChanged
-
+        updateHistoryTable();
     }//GEN-LAST:event_comboFilterItemStateChanged
 
     private void comboFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilterActionPerformed
         // TODO add your handling code here:
-        if (comboFilter.getSelectedItem() == "Semua"){
-            System.out.println("Masuk ke semua");
-            historyList = hc.getAllHistory();
-        } else if (comboFilter.getSelectedItem()=="Bulanan"){
-            System.out.println("Masuk ke bulan ini");
-            historyList = hc.getBulanIniHistory();
-        } else if (comboFilter.getSelectedItem()=="Mingguan"){
-            System.out.println("Masuk ke minggu ini");
-            historyList = hc.getMingguIniHistory();
-        }
-        fillTabelHistory();
+        updateHistoryTable();
     }//GEN-LAST:event_comboFilterActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -149,12 +230,34 @@ public void fillTabelHistory() {
         new FormLogin().setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void sortboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortboxActionPerformed
+        // TODO add your handling code here:
+        updateHistoryTable();
+    }//GEN-LAST:event_sortboxActionPerformed
+
+    private void ascradActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ascradActionPerformed
+        // TODO add your handling code here:
+        this.descrad.setSelected(false);
+        updateHistoryTable();
+    }//GEN-LAST:event_ascradActionPerformed
+
+    private void descradActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descradActionPerformed
+        // TODO add your handling code here:
+        this.ascrad.setSelected(false);
+        updateHistoryTable();
+    }//GEN-LAST:event_descradActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton ascrad;
     private javax.swing.JComboBox<String> comboFilter;
+    private javax.swing.JRadioButton descrad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JButton logout;
+    private javax.swing.JComboBox<String> sortbox;
     private javax.swing.JTable tableHistory;
     // End of variables declaration//GEN-END:variables
 }

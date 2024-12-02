@@ -22,10 +22,25 @@ public class HistoryController {
         db.config();
         stm = db.stm;
     }
-    public ArrayList<History> getBulanIniHistory(){
+    
+    public String _sortby(String plhn,String ascdesc){
+        String _sortResult=" ";
+        if(plhn.equals("tanggal")){
+            _sortResult+= "ORDER BY pesanan.tanggal ";
+        } else if(plhn.equals("total biaya")){
+            _sortResult+= "ORDER BY pesanan.total_biaya ";
+        }
+        if(ascdesc.equals("besar ke kecil")){
+            _sortResult+= "DESC;";
+        } else _sortResult+= "ASC;";
+        if(plhn.equals("default")) return ";";
+        return _sortResult;
+    }
+    public ArrayList<History> getBulanIniHistory(String plhn,String ascdesc){
         try {
+            plhn = _sortby(plhn,ascdesc);
             ArrayList<History> list = new ArrayList<>();
-            sql ="SELECT * FROM pesanan WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE());";
+            sql ="SELECT * FROM pesanan WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE())"+plhn;
             res = stm.executeQuery(sql);
             while (res.next()) {
                 History history = new History();
@@ -41,10 +56,11 @@ public class HistoryController {
             return null;
         }
     }
-    public ArrayList<History> getMingguIniHistory(){
+    public ArrayList<History> getMingguIniHistory(String plhn,String ascdesc){
         try {
+            plhn = _sortby(plhn,ascdesc);
             ArrayList<History> list = new ArrayList<>();
-            sql = "SELECT * FROM pesanan WHERE YEARWEEK(tanggal, 1) = YEARWEEK(CURDATE(), 1);";
+            sql = "SELECT * FROM pesanan WHERE YEARWEEK(tanggal, 1) = YEARWEEK(CURDATE(), 1)"+plhn;
             res = stm.executeQuery(sql);
             while (res.next()) {
                 History history = new History();
@@ -60,9 +76,10 @@ public class HistoryController {
             return null;
         }
     }
-    public ArrayList<History> getAllHistory() {
+    public ArrayList<History> getAllHistory(String plhn,String ascdesc) {
         try {
-            sql = "select * from pesanan";
+            plhn = _sortby(plhn,ascdesc);
+            sql = "select * from pesanan"+plhn;
             res = stm.executeQuery(sql);
 
             ArrayList<History> historyList = new ArrayList<>();

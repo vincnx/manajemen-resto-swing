@@ -7,11 +7,6 @@ package manajemenresto.view;
 import javax.swing.JOptionPane;
 import manajemenresto.controller.UserController;
 import manajemenresto.model.User;
-
-/**
- *
- * @author vincentexelcio
- */
 public class FormLogin extends javax.swing.JFrame {
     
     /**
@@ -20,10 +15,7 @@ public class FormLogin extends javax.swing.JFrame {
     public FormLogin() {
         initComponents();
     }
-    
-    
     UserController userController = new UserController();
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
