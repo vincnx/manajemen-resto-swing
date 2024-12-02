@@ -24,6 +24,7 @@ public class HalamanPelanggan extends javax.swing.JFrame {
     public HalamanPelanggan(User user) {
     initComponents();
     SELECTED_USER = user;
+    formPesanan1.setUser(user);
     jusername.setText(user.getUsername());
     jtelp.setText(user.getNoTelp());
     jpass.setText(user.getPassword());
