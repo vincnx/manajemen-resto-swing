@@ -133,7 +133,9 @@ public class FormPesanan extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         textTotalBiaya = new javax.swing.JLabel();
         buttonHapus = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(143, 40, 50));
         setPreferredSize(new java.awt.Dimension(536, 440));
 
         tabelPesanan.setModel(new javax.swing.table.DefaultTableModel(
@@ -163,6 +165,7 @@ public class FormPesanan extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Pilih Menu");
 
         comboBoxMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -172,24 +175,36 @@ public class FormPesanan extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Jumlah");
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Subtotal:");
 
         textSubtotal.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        textSubtotal.setForeground(new java.awt.Color(255, 255, 255));
         textSubtotal.setText("0");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Total Biaya:");
 
         textTotalBiaya.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        textTotalBiaya.setForeground(new java.awt.Color(255, 255, 255));
         textTotalBiaya.setText("0");
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHapusActionPerformed(evt);
+            }
+        });
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -222,11 +237,17 @@ public class FormPesanan extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(buttonKonfirmasi, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -360,6 +381,12 @@ public class FormPesanan extends javax.swing.JPanel {
         resetState();
     }//GEN-LAST:event_buttonKonfirmasiActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new FormLogin().setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapus;
@@ -371,6 +398,7 @@ public class FormPesanan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JTable tabelPesanan;
     private javax.swing.JTextField textJumlahMenu;
     private javax.swing.JLabel textSubtotal;
