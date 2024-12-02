@@ -51,7 +51,7 @@ public class HalamanPelanggan extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(536, 493));
 
-        jTabbedPane1.addTab("Pesan", formPesanan1);
+        jTabbedPane1.addTab("pemesanan", formPesanan1);
 
         jLabel1.setText("Username");
 

@@ -7,6 +7,7 @@ package manajemenresto.view;
 import javax.swing.JOptionPane;
 import manajemenresto.controller.MenuController;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import manajemenresto.model.Menu;
 import manajemenresto.view.FormLogin;
@@ -340,8 +341,8 @@ public class FormMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_comboBoxMenuActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        // TODO add your handling code here:                                       
-        this.setVisible(false);
+        JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        parentFrame.setVisible(false);
         new FormLogin().setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
