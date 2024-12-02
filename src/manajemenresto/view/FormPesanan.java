@@ -5,6 +5,7 @@
 package manajemenresto.view;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import manajemenresto.controller.MenuController;
@@ -382,8 +383,8 @@ public class FormPesanan extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonKonfirmasiActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+        JFrame parentFrame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        parentFrame.setVisible(false);
         new FormLogin().setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 

@@ -58,17 +58,17 @@
         <Component class="manajemenresto.view.FormMenu" name="formMenu1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Menu">
-                <Property name="tabTitle" type="java.lang.String" value="Menu"/>
+              <JTabbedPaneConstraints tabName="menu">
+                <Property name="tabTitle" type="java.lang.String" value="menu"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="manajemenresto.view.FormPelanggan" name="formPelanggan1">
+        <Component class="manajemenresto.view.FormPelanggan" name="formPelanggan2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Pelanggan">
-                <Property name="tabTitle" type="java.lang.String" value="Pelanggan"/>
+              <JTabbedPaneConstraints tabName="pelanggan">
+                <Property name="tabTitle" type="java.lang.String" value="pelanggan"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

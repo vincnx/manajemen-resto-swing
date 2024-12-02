@@ -43,8 +43,8 @@
         <Component class="manajemenresto.view.FormPesanan" name="formPesanan1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Pesan">
-                <Property name="tabTitle" type="java.lang.String" value="Pesan"/>
+              <JTabbedPaneConstraints tabName="pemesanan">
+                <Property name="tabTitle" type="java.lang.String" value="pemesanan"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
