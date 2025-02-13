@@ -315,11 +315,11 @@ public class FormMenu extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Silahkan Pilih Menu terlebih dahulu");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin?");
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Konfirmasi", 2);
         if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
             return;
         }
-        boolean status = menuController.deleteMenuByNama(SELECTED_MENU.getNama().toString());
+        boolean status = menuController.deleteMenuByNama(SELECTED_MENU.getNama());
         
         if (!status) {
             JOptionPane.showMessageDialog(this, "Menu gagal dihapus");

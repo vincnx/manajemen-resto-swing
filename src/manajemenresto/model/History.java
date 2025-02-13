@@ -10,19 +10,10 @@ import java.util.Date;
  *
  * @author anr00
  */
-public class History {
-    private int id;
+public class History extends Pesanan{
     private Date date;
     private double total_biaya;
     private int user_id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Date getDate() {
         return date;

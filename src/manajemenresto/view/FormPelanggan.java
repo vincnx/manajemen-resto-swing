@@ -25,7 +25,19 @@ public class FormPelanggan extends javax.swing.JPanel {
         fillCombobox();
         fillTabelUser();
         buttonBatal.setVisible(false);
+        textNomorTelepon.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+        textNomorTeleponKeyTyped(evt);
     }
+});
+    }
+    
+    private void textNomorTeleponKeyTyped(java.awt.event.KeyEvent evt) {
+    char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume();
+    }
+}
     UserController userController = new UserController();
     User SELECTED_USER = new User();
 
@@ -316,7 +328,7 @@ public class FormPelanggan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Silahkan Pilih User terlebih dahulu");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin?");
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Konfirmasi", 2);
         if (confirm == JOptionPane.CANCEL_OPTION || confirm == JOptionPane.NO_OPTION) {
             return;
         }

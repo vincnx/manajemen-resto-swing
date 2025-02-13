@@ -123,6 +123,7 @@ public void fillTabelHistory() {
         ascrad.setForeground(new java.awt.Color(255, 255, 255));
         ascrad.setSelected(true);
         ascrad.setText("kecil ke besar");
+        ascrad.setEnabled(false);
         ascrad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ascradActionPerformed(evt);
@@ -132,6 +133,7 @@ public void fillTabelHistory() {
         descrad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         descrad.setForeground(new java.awt.Color(255, 255, 255));
         descrad.setText("besar ke kecil");
+        descrad.setEnabled(false);
         descrad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descradActionPerformed(evt);
@@ -231,7 +233,15 @@ public void fillTabelHistory() {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void sortboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortboxActionPerformed
-        // TODO add your handling code here:
+        if (sortbox.getSelectedItem() == "default") {
+            ascrad.setEnabled(false);
+            descrad.setEnabled(false);
+        }
+        else {
+            ascrad.setEnabled(true);
+            descrad.setEnabled(true);
+        }
+        
         updateHistoryTable();
     }//GEN-LAST:event_sortboxActionPerformed
 

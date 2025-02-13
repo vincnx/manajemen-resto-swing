@@ -26,6 +26,9 @@ public class MenuController {
 
     public boolean CreateMenu(String namaMenu, double harga) {
         try {
+            if (harga < 0) {
+                return false;
+            }
             sql = "insert into menu (nama,harga) values ('" + namaMenu + "'," + harga + ")";
 
             int response = stm.executeUpdate(sql);
@@ -81,6 +84,9 @@ public class MenuController {
 
     public boolean updateMenuByNama(String nama, Menu dataMenuBaru) {
         try {
+            if (dataMenuBaru.getHarga() < 0) {
+                return false;
+            }
             sql = "update menu set nama='" + dataMenuBaru.getNama() + "', harga=" + dataMenuBaru.getHarga() + " where nama='" + nama + "'";
             int response = stm.executeUpdate(sql);
             return response > 0;

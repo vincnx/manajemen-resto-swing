@@ -28,12 +28,15 @@ public class FormPesanan extends javax.swing.JPanel {
         fillCombobox();
         fillTabelPesanan();
         textJumlahMenu.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 updateTotalBiaya();
             }
+            @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 updateTotalBiaya();
             }
+            @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 updateTotalBiaya();
             }
@@ -78,7 +81,7 @@ public class FormPesanan extends javax.swing.JPanel {
         Object pilihanMenu = comboBoxMenu.getSelectedItem();
         String jumlahMenu = textJumlahMenu.getText();
     
-        if (pilihanMenu == null || pilihanMenu.toString().equals("pilih menu") || jumlahMenu.isEmpty()) {
+        if (pilihanMenu == null || pilihanMenu.toString().equals("pilih menu") || jumlahMenu.isEmpty() || jumlahMenu.contains("-")) {
             textTotalBiaya.setText("0");
             return;
         }
@@ -86,7 +89,7 @@ public class FormPesanan extends javax.swing.JPanel {
         try {
             int jumlah = Integer.parseInt(jumlahMenu);
             Menu menu = menuController.getMenuByNama(pilihanMenu.toString());
-            if (menu != null) {
+            if (menu != null || jumlah > 0) {
                 double totalBiaya = jumlah * menu.getHarga();
                 textTotalBiaya.setText(String.valueOf(totalBiaya));
             }
@@ -297,6 +300,7 @@ public class FormPesanan extends javax.swing.JPanel {
         }
         if (jumlah < 1) {
             JOptionPane.showMessageDialog(this, "Jumlah menu minimum 1");
+            return;
         }
         
         Menu menu = menuController.getMenuByNama(pilihanMenu);

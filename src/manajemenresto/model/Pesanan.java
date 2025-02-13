@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
  * @author vincentexelcio
  */
 public class Pesanan {
-    private int id;
-    private int userId;
-    private User user;
-    private ArrayList<MenuPesanan> menuPesananList;
-    private double totalBiaya;
-    private LocalDateTime tanggal;
+    protected int id;
+    protected int userId;
+    protected User user;
+    protected ArrayList<MenuPesanan> menuPesananList;
+    protected double totalBiaya;
+    protected LocalDateTime tanggal;
 
     public LocalDateTime getTanggal() {
         return tanggal;
